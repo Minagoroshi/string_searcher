@@ -25,8 +25,12 @@ fn main() {
     }
 
     let path = Path::new(path);
-
+    println!("Starting Search in {:?} for \"{}\"", path, search_string);
+    let start = std::time::Instant::now();
     walk_dir(&path, &search_string, case_sensitive);
+    let end = std::time::Instant::now();
+    let elapsed = end - start;
+    println!("Search took {} seconds", elapsed.as_secs());
 }
 
 fn walk_dir(path: &Path, search_string: &str, case_sensitive: bool) {
